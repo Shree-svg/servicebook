@@ -10,13 +10,27 @@
 [![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
 [![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)](https://vitejs.dev)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com)
+[![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://render.com)
 
-**A production-grade Urban Company-style marketplace built with the MERN stack.**  
-Book home services, manage jobs as a provider, and oversee the platform as admin — all in one app.
+**A production-grade Urban Company-style marketplace built with the MERN stack.**
+Book home services, manage jobs as a provider, and oversee the platform as admin.
 
-[🚀 Live Demo]([#](https://servicebook-97f5qqwbq-shree-svgs-projects.vercel.app)) · [📖 Docs](#setup) · [🐛 Report Bug](https://github.com/Shree-svg/servicebook/issues)
+[🚀 Live Demo](https://servicebook-97f5qqwbq-shree-svgs-projects.vercel.app) · [🔌 API](https://servicebook-cbra.onrender.com) · [💻 GitHub](https://github.com/Shree-svg/servicebook) · [🐛 Report Bug](https://github.com/Shree-svg/servicebook/issues)
 
 </div>
+
+---
+
+## 🌐 Live Links
+
+| Service | URL |
+|---------|-----|
+| 🎨 Frontend | https://servicebook-97f5qqwbq-shree-svgs-projects.vercel.app |
+| 🔌 Backend API | https://servicebook-cbra.onrender.com/api |
+| 💻 GitHub Repo | https://github.com/Shree-svg/servicebook |
+
+> ⚠️ Backend runs on Render's free tier — first request may take 50 seconds to wake up.
 
 ---
 
@@ -25,7 +39,7 @@ Book home services, manage jobs as a provider, and oversee the platform as admin
 ### 👤 Customer
 - Browse and search services by category
 - **4-step booking flow** — Schedule → Address → Payment → Confirm
-- Real-time booking tracking with status timeline
+- Real-time booking tracking with live status timeline
 - Rate and review completed services
 - Rewards dashboard and premium plans
 
@@ -44,7 +58,7 @@ Book home services, manage jobs as a provider, and oversee the platform as admin
 
 ## 🎨 Design System — Velvet Dusk
 
-Custom dark theme built from Google Stitch prototypes.
+Custom dark theme built from Google Stitch prototypes. 19 screens across 3 roles.
 
 | Token | Value | Usage |
 |-------|-------|-------|
@@ -63,10 +77,10 @@ Custom dark theme built from Google Stitch prototypes.
 |-------|-----------|
 | Frontend | React 18 + Vite + Tailwind CSS |
 | Backend | Node.js + Express.js |
-| Database | MongoDB + Mongoose |
+| Database | MongoDB Atlas + Mongoose |
 | Auth | JWT + bcrypt + Role-based guards |
-| Security | Helmet + CORS + Rate Limiting |
-| UI | Custom Velvet Dusk design system (19 screens) |
+| Security | Helmet + CORS + Morgan + Rate Limiting |
+| Hosting | Vercel (frontend) + Render (backend) |
 
 ---
 
@@ -74,7 +88,7 @@ Custom dark theme built from Google Stitch prototypes.
 
 ```
 servicebook/
-├── client/                 # React frontend
+├── client/                 # React frontend (Vercel)
 │   ├── src/
 │   │   ├── api/            # Axios config + interceptors
 │   │   ├── components/     # ProtectedRoute, AdminLayout
@@ -85,7 +99,7 @@ servicebook/
 │   │       └── admin/      # Admin panel pages
 │   └── tailwind.config.js  # Velvet Dusk design tokens
 │
-└── server/                 # Express backend
+└── server/                 # Express backend (Render)
     ├── controllers/        # Auth, Booking, Service, Admin
     ├── middleware/         # Auth guard, error handler, rate limiter
     ├── models/             # User, Service, Booking, Review
@@ -95,7 +109,7 @@ servicebook/
 
 ---
 
-## ⚙️ Setup
+## ⚙️ Local Setup
 
 ### Prerequisites
 - Node.js v18+
@@ -116,7 +130,7 @@ cp .env.example .env
 Fill in `server/.env`:
 ```env
 MONGO_URI=your_mongodb_atlas_uri
-JWT_SECRET=your_super_secret_key
+JWT_SECRET=your_secret_key
 PORT=5001
 CLIENT_URL=http://localhost:5173
 ```
@@ -166,31 +180,36 @@ npm run dev       # Starts on port 5173
 ## 🗺️ API Endpoints
 
 ```
-POST   /api/auth/register       Register new user
-POST   /api/auth/login          Login + get JWT
-GET    /api/auth/me             Get current user (protected)
+POST   /api/auth/register              Register new user
+POST   /api/auth/login                 Login + get JWT
+GET    /api/auth/me                    Get current user (protected)
 
-GET    /api/services            List all services
-GET    /api/services/:id        Get service by ID
+GET    /api/services                   List all services
+GET    /api/services/:id               Get service by ID
+GET    /api/categories                 List all categories
 
-POST   /api/bookings            Create booking (protected)
-GET    /api/bookings/mybookings Get user's bookings (protected)
-GET    /api/bookings/:id        Get booking by ID (protected)
-PATCH  /api/bookings/:id/status Update booking status (protected)
+POST   /api/bookings                   Create booking (protected)
+GET    /api/bookings/my                Get user's bookings (protected)
+GET    /api/bookings/:id               Get booking by ID (protected)
+PATCH  /api/bookings/:id/status        Update booking status (protected)
 
-GET    /api/admin/providers/pending  Pending verifications (admin)
-PATCH  /api/admin/providers/:id/verify  Approve/reject provider (admin)
+POST   /api/reviews                    Submit review (protected)
+
+GET    /api/admin/providers/pending    Pending verifications (admin)
+PATCH  /api/admin/providers/:id/verify Approve/reject provider (admin)
+GET    /api/admin/disputes             List disputes (admin)
+PATCH  /api/admin/disputes/:id/resolve Resolve dispute (admin)
 ```
 
 ---
 
 ## 🚀 Deployment
 
-| Service | Platform |
-|---------|----------|
-| Frontend | Vercel |
-| Backend | Render |
-| Database | MongoDB Atlas |
+| Service | Platform | URL |
+|---------|----------|-----|
+| Frontend | Vercel | https://servicebook-97f5qqwbq-shree-svgs-projects.vercel.app |
+| Backend | Render | https://servicebook-cbra.onrender.com |
+| Database | MongoDB Atlas | Cloud hosted |
 
 ---
 
@@ -199,6 +218,7 @@ PATCH  /api/admin/providers/:id/verify  Approve/reject provider (admin)
 **Shree** — B.Tech @ VIT Chennai
 
 [![GitHub](https://img.shields.io/badge/GitHub-Shree--svg-181717?style=flat&logo=github)](https://github.com/Shree-svg)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=flat&logo=linkedin)](https://linkedin.com)
 
 ---
 
