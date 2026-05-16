@@ -14,7 +14,7 @@
 **A production-grade Urban Company-style marketplace built with the MERN stack.**  
 Book home services, manage jobs as a provider, and oversee the platform as admin — all in one app.
 
-[🚀 Live Demo](#) · [📖 Docs](#setup) · [🐛 Report Bug](https://github.com/Shree-svg/servicebook/issues)
+[🚀 Live Demo]([#](https://servicebook-97f5qqwbq-shree-svgs-projects.vercel.app)) · [📖 Docs](#setup) · [🐛 Report Bug](https://github.com/Shree-svg/servicebook/issues)
 
 </div>
 
