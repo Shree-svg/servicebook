@@ -24,6 +24,11 @@ dotenv.config();
 // Connect to database
 connectDB();
 
+// Seed database with sample data if enabled
+if (process.env.SEED_DB === 'true') {
+  require('./seed/seedData');
+}
+
 const app = express();
 
 // Middleware

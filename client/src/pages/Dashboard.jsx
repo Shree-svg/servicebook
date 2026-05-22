@@ -15,7 +15,7 @@ const Dashboard = () => {
     const fetchDashboardData = async () => {
       try {
         setLoading(true);
-        const res = await api.get('/api/bookings/my');
+        const res = await api.get('/api/bookings/mybookings');
         setBookings(res.data || []);
       } catch (err) {
         console.error('Error fetching dashboard data:', err);

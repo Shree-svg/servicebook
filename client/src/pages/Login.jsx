@@ -38,7 +38,24 @@ const Login = () => {
       setIsSubmitting(false);
     }
   };
+  // Sample accounts for quick demo
+  const sampleAccounts = [
+    { email: 'alice@example.com', password: 'password123', label: 'User (Alice)' },
+    { email: 'bob@example.com', password: 'password123', label: 'Provider (Bob)' },
+    { email: 'admin@example.com', password: 'admin123', label: 'Admin' },
+  ];
 
+  const handleSampleChange = (e) => {
+    const idx = e.target.value;
+    if (idx === '') {
+      setEmail('');
+      setPassword('');
+    } else {
+      const acct = sampleAccounts[idx];
+      setEmail(acct.email);
+      setPassword(acct.password);
+    }
+  };
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4 antialiased glass-panel anim-fade-up">
       <div className="w-full max-w-md">
@@ -126,6 +143,19 @@ const Login = () => {
               Quick Demo Login
             </h3>
             <span className="bg-primary/10 text-primary text-[10px] px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider">Dev Tool</span>
+          </div>
+          {/* Sample Account Selector */}
+          <div className="mb-4">
+            <select
+              onChange={handleSampleChange}
+              className="w-full bg-surface-container-high border border-outline-variant rounded-2xl py-2 px-3 text-on-surface outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+              defaultValue=""
+            >
+              <option value="">-- Select Demo Account --</option>
+              {sampleAccounts.map((acct, idx) => (
+                <option key={idx} value={idx}>{acct.label}</option>
+              ))}
+            </select>
           </div>
           <div className="grid grid-cols-3 gap-3">
             <button
