@@ -4,6 +4,30 @@ import api from '../api/axiosConfig';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 
+const getServiceImage = (service) => {
+  if (service.image && !service.image.includes('example.com')) return service.image;
+  if (service.images && service.images.length > 0 && !service.images[0].includes('example.com')) return service.images[0];
+  
+  // High quality Unsplash Fallbacks based on title
+  const title = service.title.toLowerCase();
+  if (title.includes('deep')) {
+    return 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80';
+  }
+  if (title.includes('standard') || title.includes('cleaning')) {
+    return 'https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=800&q=80';
+  }
+  if (title.includes('leak') || title.includes('pipe') || title.includes('plumbing')) {
+    return 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80';
+  }
+  if (title.includes('drain') || title.includes('unclog')) {
+    return 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80';
+  }
+  if (title.includes('electrical') || title.includes('panel') || title.includes('electrician')) {
+    return 'https://images.unsplash.com/photo-1621905252507-b354bc25edac?auto=format&fit=crop&w=800&q=80';
+  }
+  return 'https://images.unsplash.com/photo-1581578731548-c64695cc6958?auto=format&fit=crop&q=80&w=800';
+};
+
 export default function Home() {
   const [categories, setCategories] = useState([]);
   const [services, setServices] = useState([]);
@@ -202,7 +226,7 @@ export default function Home() {
                 {services.map((service, index) => (
                   <div key={service._id} className={`gradient-card rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300 border border-outline-variant/30 group animate-slide-up delay-${(index % 3) * 100}`}>
                     <div className="h-56 overflow-hidden relative">
-                      <img alt={service.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={service.image || "https://images.unsplash.com/photo-1581578731548-c64695cc6958?auto=format&fit=crop&q=80&w=800"}/>
+                      <img alt={service.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={getServiceImage(service)}/>
                       <div className="absolute top-m3-md right-m3-md bg-surface/60 backdrop-blur-md px-m3-sm py-m3-xs rounded-lg flex items-center gap-m3-xs border border-white/10 shadow-sm">
                         <span className="material-symbols-outlined text-secondary text-sm" style={{fontVariationSettings: "'FILL' 1"}}>star</span>
                         <span className="font-label-sm text-label-sm text-on-surface font-bold">{service.rating || '4.8'}</span>
