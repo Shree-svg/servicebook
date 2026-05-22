@@ -161,7 +161,7 @@ const Login = () => {
             <button
               type="button"
               disabled={isSubmitting}
-              onClick={() => handleQuickLogin('customer@example.com', 'password123')}
+              onClick={() => handleQuickLogin('alice@example.com', 'password123')}
               className="flex flex-col items-center p-3 rounded-2xl bg-surface-container-high/40 hover:bg-primary/10 border border-outline-variant/30 hover:border-primary/30 transition-all text-center group active:scale-95 disabled:opacity-50"
             >
               <span className="material-symbols-outlined text-lg text-muted group-hover:text-primary mb-1">person</span>
@@ -171,7 +171,7 @@ const Login = () => {
             <button
               type="button"
               disabled={isSubmitting}
-              onClick={() => handleQuickLogin('john@example.com', 'password123')}
+              onClick={() => handleQuickLogin('bob@example.com', 'password123')}
               className="flex flex-col items-center p-3 rounded-2xl bg-surface-container-high/40 hover:bg-secondary/10 border border-outline-variant/30 hover:border-secondary/30 transition-all text-center group active:scale-95 disabled:opacity-50"
             >
               <span className="material-symbols-outlined text-lg text-muted group-hover:text-secondary mb-1">engineering</span>
@@ -181,7 +181,7 @@ const Login = () => {
             <button
               type="button"
               disabled={isSubmitting}
-              onClick={() => handleQuickLogin('admin@example.com', 'password123')}
+              onClick={() => handleQuickLogin('admin@example.com', 'admin123')}
               className="flex flex-col items-center p-3 rounded-2xl bg-surface-container-high/40 hover:bg-tertiary/10 border border-outline-variant/30 hover:border-tertiary/30 transition-all text-center group active:scale-95 disabled:opacity-50"
             >
               <span className="material-symbols-outlined text-lg text-muted group-hover:text-tertiary mb-1">shield_person</span>
