@@ -25,7 +25,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4 antialiased">
+    <div className="min-h-screen bg-background flex items-center justify-center p-4 antialiased glass-panel anim-fade-up">
       <div className="w-full max-w-md">
         {/* Logo/Brand */}
         <div className="flex flex-col items-center mb-8">

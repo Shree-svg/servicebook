@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import api from '../api/axiosConfig';
+import AnimatedBackground from '../components/AnimatedBackground';
 import toast from 'react-hot-toast';
 
 const Dashboard = () => {
@@ -56,6 +57,7 @@ const Dashboard = () => {
 
   return (
     <div className="bg-transparent text-on-surface min-h-screen pb-24 md:pb-0 transition-colors duration-300 antialiased selection:bg-primary/30 selection:text-primary-fixed">
+        <AnimatedBackground />
       {/* Background Glows */}
       <div className="fixed inset-0 z-[-1] opacity-20 pointer-events-none overflow-hidden">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] gradient-primary blur-[120px] rounded-full animate-pulse"></div>
@@ -152,7 +154,7 @@ const Dashboard = () => {
           ) : upcomingBookings.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-m3-lg">
               {upcomingBookings.map(booking => (
-                <div key={booking._id} className="gradient-card backdrop-blur-md border border-outline-variant/30 rounded-xl overflow-hidden shadow-lg flex flex-col hover:border-primary/50 transition-all group duration-300">
+                <div key={booking._id} className="glass-panel backdrop-blur-md border border-outline-variant/30 rounded-xl overflow-hidden shadow-lg flex flex-col hover:border-primary/50 transition-all group duration-300 anim-fade-up">
                   <div className="h-40 w-full bg-surface-container-high relative overflow-hidden">
                     <img 
                       alt={booking.service?.title} 

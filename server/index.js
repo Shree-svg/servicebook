@@ -14,6 +14,7 @@ const serviceRoutes = require('./routes/serviceRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
+const categoryRoutes = require('./routes/categoryRoutes');
 
 const compression = require('compression');
 
@@ -28,8 +29,26 @@ const app = express();
 // Middleware
 app.use(compression());
 app.use(express.json());
+
+const clientUrl = process.env.CLIENT_URL;
 app.use(cors({
-  origin: process.env.CLIENT_URL || "http://localhost:5173",
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    const allowed = [
+      'http://localhost:5173',
+      'http://localhost:5001',
+      'https://servicebook-sigma.vercel.app'
+    ];
+    if (clientUrl) {
+      allowed.push(clientUrl);
+    }
+    const isAllowed = allowed.includes(origin) || origin.endsWith('.vercel.app') || origin.startsWith('http://localhost:');
+    if (isAllowed) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
 app.use(helmet());
@@ -42,6 +61,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/services', serviceRoutes);
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/categories', categoryRoutes);
 
 app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'ok' });

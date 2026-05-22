@@ -79,7 +79,7 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-background text-on-background min-h-screen">
+    <div className="bg-background text-on-background min-h-screen glass-panel anim-fade-up">
       {/* TopAppBar */}
       <header className="fixed top-0 w-full z-50 bg-surface-container-low/80 backdrop-blur-lg border-b border-outline-variant/20 shadow-sm flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 w-full">
         <div className="flex items-center gap-m3-md">
