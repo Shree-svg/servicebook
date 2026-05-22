@@ -43,6 +43,14 @@ async function seed() {
       { name: 'Bob', email: 'bob@example.com', password: 'password123', role: 'provider', phone: '+1 (555) 987-6543', providerDetails: { bio: 'Experienced professional house cleaner', experience: 8, address: '123 Elm St, San Francisco, CA', rating: 4.8, numReviews: 1 } },
       { name: 'Admin', email: 'admin@example.com', password: 'admin123', role: 'admin', phone: '+1 (555) 000-0000' },
     ];
+    // Fallback demo accounts
+    const fallbackUsers = [
+      { name: 'John Doe', email: 'john@example.com', password: 'password123', role: 'user', phone: '+1 (555) 111-1111' },
+      { name: 'Jane Doe', email: 'jane@example.com', password: 'password123', role: 'user', phone: '+1 (555) 222-2222' },
+      { name: 'Customer', email: 'customer@example.com', password: 'password123', role: 'user', phone: '+1 (555) 333-3333' }
+    ];
+    sampleUsers.push(...fallbackUsers);
+
 
     const firstNames = ['John', 'Jane', 'Alex', 'Emily', 'Michael', 'Sarah', 'David', 'Jessica', 'James', 'Ashley', 'Robert', 'Amanda', 'William', 'Megan', 'Joseph', 'Taylor', 'Daniel', 'Rachel', 'Matthew', 'Elizabeth', 'Andrew', 'Lauren', 'Christopher', 'Kayla', 'Joshua', 'Brianna', 'Ryan', 'Victoria', 'Nicholas', 'Samantha', 'Brandon', 'Alexis', 'Tyler', 'Madison', 'Zachary', 'Abigail', 'Connor', 'Olivia', 'Dylan', 'Emma', 'Christian', 'Isabella', 'Samuel', 'Sophia', 'Benjamin', 'Mia', 'Nathan', 'Charlotte', 'Justin', 'Amelia'];
     const lastNames = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Rodriguez', 'Martinez', 'Hernandez', 'Lopez', 'Gonzalez', 'Wilson', 'Anderson', 'Thomas', 'Taylor', 'Moore', 'Jackson', 'Martin', 'Lee', 'Perez', 'Thompson', 'White', 'Harris', 'Sanchez', 'Clark', 'Ramirez', 'Lewis', 'Robinson', 'Walker', 'Young', 'Allen', 'King', 'Wright', 'Scott', 'Torres', 'Nguyen', 'Hill', 'Flores', 'Green', 'Adams', 'Nelson', 'Baker', 'Hall', 'Rivera', 'Campbell', 'Mitchell', 'Carter', 'Roberts'];
