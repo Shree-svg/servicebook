@@ -76,6 +76,8 @@ const getMe = async (req, res, next) => {
         name: user.name,
         email: user.email,
         role: user.role,
+        avatar: user.avatar,
+        rating: user.role === 'provider' ? (user.providerDetails?.rating || 5.0) : undefined,
       });
     } else {
       return next(new ApiError(404, 'User not found'));

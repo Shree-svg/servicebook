@@ -7,7 +7,8 @@ const categorySchema = new mongoose.Schema({
     unique: true
   },
   description: String,
-  image: String
+  image: String,
+  icon: String
 }, { timestamps: true });
 
 module.exports = mongoose.model('Category', categorySchema);

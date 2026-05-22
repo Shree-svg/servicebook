@@ -25,6 +25,8 @@ This document provides an overview of the MongoDB collections (Mongoose models) 
 | `_id` | ObjectId | Primary key. |
 | `name` | String | Category name (e.g., "Home Cleaning"). |
 | `description` | String | Optional description. |
+| `image` | String | URL of the category background/cover image. |
+| `icon` | String | Material icon string for the category UI (e.g., "cleaning_services"). |
 | `createdAt` | Date | Auto timestamp. |
 | `updatedAt` | Date | Auto timestamp. |
 

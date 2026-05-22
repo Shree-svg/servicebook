@@ -38,6 +38,17 @@ const bookingSchema = new mongoose.Schema({
     enum: ['pending', 'paid', 'refunded'],
     default: 'pending'
   }
-}, { timestamps: true });
+}, { 
+  timestamps: true,
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true }
+});
+
+// Virtual for slot (alias of time)
+bookingSchema.virtual('slot').get(function() {
+  return this.time;
+}).set(function(val) {
+  this.time = val;
+});
 
 module.exports = mongoose.model('Booking', bookingSchema);
