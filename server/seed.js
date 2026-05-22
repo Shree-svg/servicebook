@@ -15,8 +15,20 @@ const importData = async () => {
     await Category.deleteMany();
     await Service.deleteMany();
 
-    // 2 provider accounts
-    const providers = await User.create([
+    // Seed accounts for all roles
+    const users = await User.create([
+      {
+        name: 'Demo Customer',
+        email: 'customer@example.com',
+        password: 'password123',
+        role: 'user'
+      },
+      {
+        name: 'Demo Admin',
+        email: 'admin@example.com',
+        password: 'password123',
+        role: 'admin'
+      },
       {
         name: 'John Doe',
         email: 'john@example.com',
@@ -32,6 +44,9 @@ const importData = async () => {
         providerDetails: { bio: 'Master plumber', experience: 10 }
       }
     ]);
+    
+    // Find provider users specifically for service assignment
+    const providers = users.filter(u => u.role === 'provider');
 
     // 3 categories
     const categories = await Category.create([

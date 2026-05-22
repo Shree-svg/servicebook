@@ -24,6 +24,21 @@ const Login = () => {
     }
   };
 
+  const handleQuickLogin = async (demoEmail, demoPassword) => {
+    setEmail(demoEmail);
+    setPassword(demoPassword);
+    setError('');
+    setIsSubmitting(true);
+    try {
+      const userData = await login(demoEmail, demoPassword);
+      navigate(getRoleRedirect(userData.role));
+    } catch (err) {
+      setError(err.response?.data?.message || 'Failed to login. Please check your credentials.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4 antialiased glass-panel anim-fade-up">
       <div className="w-full max-w-md">
@@ -100,6 +115,49 @@ const Login = () => {
               Don't have an account?{' '}
               <Link to="/signup" className="text-primary font-bold hover:underline">Create Account</Link>
             </p>
+          </div>
+        </div>
+
+        {/* Quick Demo Login Widget */}
+        <div className="mt-6 gradient-card border border-outline-variant/30 rounded-3xl p-6 shadow-xl backdrop-blur-xl">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-body-md font-bold text-on-surface flex items-center gap-2">
+              <span className="material-symbols-outlined text-primary text-sm">smart_toy</span>
+              Quick Demo Login
+            </h3>
+            <span className="bg-primary/10 text-primary text-[10px] px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider">Dev Tool</span>
+          </div>
+          <div className="grid grid-cols-3 gap-3">
+            <button
+              type="button"
+              disabled={isSubmitting}
+              onClick={() => handleQuickLogin('customer@example.com', 'password123')}
+              className="flex flex-col items-center p-3 rounded-2xl bg-surface-container-high/40 hover:bg-primary/10 border border-outline-variant/30 hover:border-primary/30 transition-all text-center group active:scale-95 disabled:opacity-50"
+            >
+              <span className="material-symbols-outlined text-lg text-muted group-hover:text-primary mb-1">person</span>
+              <span className="text-[11px] font-bold text-on-surface">Customer</span>
+              <span className="text-[9px] text-muted-variant mt-0.5">user</span>
+            </button>
+            <button
+              type="button"
+              disabled={isSubmitting}
+              onClick={() => handleQuickLogin('john@example.com', 'password123')}
+              className="flex flex-col items-center p-3 rounded-2xl bg-surface-container-high/40 hover:bg-secondary/10 border border-outline-variant/30 hover:border-secondary/30 transition-all text-center group active:scale-95 disabled:opacity-50"
+            >
+              <span className="material-symbols-outlined text-lg text-muted group-hover:text-secondary mb-1">engineering</span>
+              <span className="text-[11px] font-bold text-on-surface">Provider</span>
+              <span className="text-[9px] text-muted-variant mt-0.5">provider</span>
+            </button>
+            <button
+              type="button"
+              disabled={isSubmitting}
+              onClick={() => handleQuickLogin('admin@example.com', 'password123')}
+              className="flex flex-col items-center p-3 rounded-2xl bg-surface-container-high/40 hover:bg-tertiary/10 border border-outline-variant/30 hover:border-tertiary/30 transition-all text-center group active:scale-95 disabled:opacity-50"
+            >
+              <span className="material-symbols-outlined text-lg text-muted group-hover:text-tertiary mb-1">shield_person</span>
+              <span className="text-[11px] font-bold text-on-surface">Admin</span>
+              <span className="text-[9px] text-muted-variant mt-0.5">admin</span>
+            </button>
           </div>
         </div>
 
